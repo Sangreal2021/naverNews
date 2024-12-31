@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>네이버 뉴스 크롤러</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>네이버 뉴스 검색</h1>
+        
+        <div class="search-box">
+            <!-- 대상 페이지 : 1~10 중 선택 -->
+            <label for="max_pages">대상 페이지: </label>
+            <select id="max_pages">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            <!-- 검색어 입력란에 onkeypress 등록 -->
+            <input 
+                type="text" 
+                id="keyword" 
+                placeholder="검색어 입력" 
+                onkeypress="if(event.keyCode === 13) { initSearch(); }"
+            >
+            
+            <!-- 기존 '검색' 버튼 그대로 둠 -->
+            <button onclick="initSearch()">검색</button>
+        </div>
+
+        <!-- 로딩 표시 -->
+        <div id="loading" class="hidden">검색 중입니다...</div>
+
+        <!-- 결과 영역 -->
+        <div id="results"></div>
+
+        <!-- 로컬 페이지네이션 UI -->
+        <div id="pagination" class="hidden">
+            <button id="prevPageBtn" onclick="prevPage()">이전 페이지</button>
+            <span id="pageInfo"></span>
+            <button id="nextPageBtn" onclick="nextPage()">다음 페이지</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
