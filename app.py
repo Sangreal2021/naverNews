@@ -7,6 +7,8 @@
     python app.py
 4. 가상화 종료
     deactivate
+5. gitignore 설정
+    echo "venv/" >> .gitignore
 """
 
 import os
