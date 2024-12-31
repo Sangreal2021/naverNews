@@ -1,3 +1,12 @@
+"""
+1. 가상화 실행
+    .\venv\Scripts\activate
+2. app 실행
+    python app.py
+3. 가상화 종료
+    deactivate
+"""
+
 import os
 import time
 from flask import Flask, render_template, request, jsonify
