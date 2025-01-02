@@ -3,12 +3,16 @@
     python -m venv venv
 2. 가상화 실행
     .\venv\Scripts\activate
-3. app 실행
-    python app.py
-4. 가상화 종료
-    deactivate
-5. gitignore 설정
+3. 필요 라이브러리 설치
+    python.exe -m pip install --upgrade pip
+    pip install -r requirements.txt
+4. gitignore 설정
     echo "venv/" >> .gitignore
+5. app 실행
+    python app.py
+6. 가상화 종료
+    deactivate
+
 """
 
 import os
