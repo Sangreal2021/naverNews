@@ -53,7 +53,9 @@ def fetch_news(keyword, max_pages=1):
     base_url = "https://search.naver.com/search.naver?where=news&query={}&sort=1"
 
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--log-level=3")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     # GPU 경고 제거 옵션(선택)
