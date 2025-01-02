@@ -57,15 +57,12 @@ def fetch_news(keyword, max_pages=1):
     base_url = "https://search.naver.com/search.naver?where=news&query={}&sort=1"
 
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--log-level=3")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    # GPU 경고 제거 옵션(선택)
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-software-rasterizer")
-    chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 
     driver = webdriver.Chrome(
         service=ChromeService(ChromeDriverManager().install()),
@@ -79,15 +76,16 @@ def fetch_news(keyword, max_pages=1):
             url = f"{base_url.format(encoded_keyword)}&start={start}"
 
             driver.get(url)
-            # time.sleep(2)
 
-            # ==== WebDriverWait 적용 ====
-            wait = WebDriverWait(driver, 10)  # 최대 10초 대기
-            # 로딩 완료를 "ul.list_news > li.bx" 요소가 나타날 때까지 기다림
+            # WebDriverWait: 특정 요소(ul.list_news > li.bx)가 로딩될 때까지 대기
+            wait = WebDriverWait(driver, 10)
             wait.until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, "ul.list_news > li.bx")
             ))
-            # ===========================
+
+            # ============= 핵심 수정: 로딩이 충분히 된 후, window.stop() 호출 =============
+            driver.execute_script("window.stop();")
+            # =============================================================================
 
             page_source = driver.page_source
             soup = BeautifulSoup(page_source, "html.parser")
@@ -104,20 +102,15 @@ def fetch_news(keyword, max_pages=1):
                 title = title_tag.text.strip()
                 link = title_tag["href"].strip()
 
-                # (옵션) 검색어 필터
-                # if keyword.lower() not in title.lower():
-                #     continue
-
                 # 작성일 추출
                 date_tag = news.select_one("span.info")
                 date_text = date_tag.get_text().strip() if date_tag else "발행일 정보 없음"
                 pub_ts, pub_str = parse_pub_date(date_text)
 
-                # 언론사명 추출
+                # 언론사 추출
                 media_tag = news.select_one(".info_group a.info.press")
                 if media_tag:
                     media_name = media_tag.get_text().strip()
-                    # ------------ 치환 로직 추가 ------------
                     if "언론사 선정" in media_name:
                         media_name = media_name.replace("언론사 선정", "").strip()
                 else:
