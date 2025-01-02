@@ -78,7 +78,7 @@ def fetch_news(keyword, max_pages=1):
             driver.get(url)
 
             # WebDriverWait: 특정 요소(ul.list_news > li.bx)가 로딩될 때까지 대기
-            wait = WebDriverWait(driver, 10)
+            wait = WebDriverWait(driver, 5)
             wait.until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, "ul.list_news > li.bx")
             ))
