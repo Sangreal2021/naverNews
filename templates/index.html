@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>네이버 뉴스 크롤러 - Stylish Version</title>
+
+  <!-- Bootstrap (버전은 5.x, integrity/crossorigin 제거) -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <!-- 상단 네비게이션 바 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="bi bi-search"></i> News Crawler
+      </a>
+      <!-- 모바일 토글 버튼 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 우측 내용 (여기선 비워둠) -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- 필요 시 항목 추가 -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 메인 컨테이너 -->
+  <div class="main-gradient">
+    <div class="container py-5">
+      <h1 class="mb-4 text-center text-white display-5 fw-bold">
+        네이버 뉴스 검색
+      </h1>
+      
+      <!-- 검색 폼 -->
+      <div class="row g-3 justify-content-center">
+        <div class="col-md-3">
+          <label for="max_pages" class="form-label fw-bold text-white">대상 페이지</label>
+          <select id="max_pages" class="form-select">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="keyword" class="form-label fw-bold text-white">검색어</label>
+          <input 
+            type="text" 
+            id="keyword" 
+            class="form-control" 
+            placeholder="검색어 입력"
+            onkeypress="if(event.keyCode===13) initSearch()"
+          >
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <button class="btn btn-light w-100 fw-bold" onclick="initSearch()">
+            검색
+          </button>
+        </div>
+      </div>
+
+      <!-- 로딩 표시 -->
+      <div id="loading" class="mt-4 alert alert-info d-none">
+        <strong>검색 중...</strong> 잠시만 기다려주세요.
+      </div>
+
+      <!-- 기사 목록 -->
+      <div id="results" class="mt-4"></div>
+
+      <!-- 페이지네이션 -->
+      <div id="pagination" class="pagination-container d-none mt-4">
+        <nav>
+          <ul class="pagination justify-content-center" id="pagination-ul">
+            <!-- JS가 이 안에 <li class="page-item">...</li> 생성 -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap + Icons -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  ></script>
+  <!-- Bootstrap Icons (optional) -->
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  >
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

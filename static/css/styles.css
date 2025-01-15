@@ -1,0 +1,138 @@
+/* 전역 스타일 */
+body {
+  margin: 0;
+  padding: 0;
+  /* Bootstrap이 기본 백그라운드가 흰색 => nav, main-gradient로 구분 */
+  background-color: #f8f9fa;
+}
+
+/* 상단 네비게이션 그림자 등은 이미 navbar-dark bg-dark shadow-sm로 설정 */
+
+/* 메인 그라디언트 배경 */
+.main-gradient {
+  /* linear-gradient or radial-gradient 등 다양 */
+  background: linear-gradient(135deg, #636FA4 0%, #E8CBC0 100%);
+  /* 
+      #636FA4: 보라/핑크 계열
+      #E8CBC0: 밝은 핑크/베이지 
+      원하는 컬러 조합으로 수정 가능
+    */
+  min-height: 100vh;
+  /* 전체 화면 채우도록 */
+}
+
+/* 제목 스타일 */
+h1.custom-title {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Card 레이아웃 */
+.news-card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.news-card .card-body {
+  padding: 1rem;
+}
+
+/* 미디어 배지 */
+.media-badge {
+  background-color: #6c757d;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* =========================================
+   Pagination Styling
+   ========================================= */
+.pagination-container {
+  margin-top: 2rem;
+}
+
+/* UL의 기본 스타일 */
+.pagination {
+  margin-bottom: 0;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+}
+
+/* 각 page-item */
+.page-item {
+  margin: 0 3px;
+}
+
+/* 버튼 모양 다듬기 */
+.custom-page-link {
+  border-radius: 20px;
+  /* 둥근 모서리 */
+  color: #0d6efd;
+  /* 메인 컬러와 일관성 */
+
+  /* transition for hover effect */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* hover 시 배경색/글자색 변경 */
+.custom-page-link:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+/* active 상태 -> 강조 */
+.page-item.active .custom-page-link {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+  cursor: default;
+}
+
+/* disabled 상태 */
+.page-item.disabled .custom-page-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.custom-page-link {
+  border-radius: 25px;
+}
+
+/* alert 커스텀 (옵션) */
+.alert-info {
+  background-color: rgba(23, 162, 184, 0.15);
+  border: 1px solid #17a2b8;
+}
+
+/* 검색 폼 라벨 색상 */
+.form-label.fw-bold.text-white {
+  /* override */
+  font-weight: 600;
+}
+
+/* 상단 NavBar Brand 로고 / 텍스트 커스터마이징 */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand i {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}
+
+/* Card 제목(기사 제목) */
+.news-title a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.news-title a:hover {
+  text-decoration: underline;
+}
